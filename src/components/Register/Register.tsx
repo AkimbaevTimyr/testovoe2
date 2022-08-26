@@ -31,7 +31,7 @@ const Register: FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const navigate = useNavigate()
-    const handleCLick = () => {
+    const handleClick = () => {
        dispatch(register({user: {email, password}, navigate}))
     }
     return (
@@ -42,9 +42,9 @@ const Register: FC = () => {
             </Grid>
             <TextField onChange={e => setEmail(e.target.value)} className={classes.userNameField} label='Username' placeholder='Enter username' variant="outlined" fullWidth required />
             <TextField onChange={e => setPassword(e.target.value)} label='Password' placeholder='Enter password' type='password' variant="outlined" fullWidth required />
-            <Button onClick={handleCLick} type='submit' color='primary' variant="contained" className={classes.btn} fullWidth>Sign in</Button>
+            <Button onClick={handleClick} type='submit' color='primary' variant="contained" className={classes.btn} fullWidth>Sign Up</Button>
             <Typography > Do you have an account ?
-                <Link to="/login" >
+                <Link to="/" >
                     Sign In
                 </Link>
             </Typography>

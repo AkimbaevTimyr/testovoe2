@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { useAppDispatch } from '../../hooks/redux';
-import { setUsers } from '../../store/actions/UserActionCreator';
+import { setUsers } from '../../store/actions/UsersActionCreator';
 
 
 const Paginationn = () => {

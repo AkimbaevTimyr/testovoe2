@@ -1,16 +1,6 @@
-export interface UserStoreType {
-    users: UserType[];
-    error: string;
+export interface UserStoreInterface {
     userProfile: UserProfileType;
     isAuth: boolean;
-}
-
-export type UserType =  {
-    id: number;
-    email: string;
-    first_name: string;
-    last_name: string;
-    avatar: string;
 }
 
 export type LoginType = {
@@ -18,8 +8,17 @@ export type LoginType = {
     password: string;
 }
 
-export type UserProfileType = {
+export interface UserProfileInterface{
     email: string;
-    password: string;
     token: string;
+}
+
+export type UserProfileType  = {
+    email: string;
+    token: string;
+}
+
+export type ObjType = {
+    user: LoginType;
+    navigate : any;
 }

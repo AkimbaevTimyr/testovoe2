@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserStoreType } from "../../types/user";
-import { login, setError, setUsers } from "../actions/UserActionCreator";
+import { UserStoreInterface  } from "../../types/user";
+import { check, setUserProfile,  } from "../actions/UserActionCreator";
 
 
-const initialState: UserStoreType = {
-    users: [],
-    error: '',
-    userProfile: {email: "", password: "", token: ""},
+const initialState: UserStoreInterface  = {
+    userProfile: {email: "",  token: ""},
     isAuth: false
 }
 
@@ -15,15 +13,11 @@ const userSlice = createSlice({
     initialState,
     reducers:{},
     extraReducers: {
-        [setUsers.fulfilled.type]: (state, action) =>{
-            state.users = action.payload
-        },
-        [setError.fulfilled.type]: (state, action) =>{
-            state.error = action.payload;
-        },
-        [login.fulfilled.type]: (state, action) =>{
-            console.log(action.payload)
+        [setUserProfile.fulfilled.type]: (state, action) =>{
             state.userProfile = action.payload
+        },
+        [check.fulfilled.type] : (state, action) =>{
+            state.isAuth = action.payload
         }
     }
 })

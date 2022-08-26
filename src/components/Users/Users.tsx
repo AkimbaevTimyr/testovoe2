@@ -1,8 +1,8 @@
 import React from 'react'
 import { useAppSelector } from '../../hooks/redux'
 import Container from '@mui/material/Container';
-import { UserType } from '../../types/user';
-import UsersItem from './UsersItem';
+import { UsersType } from '../../types/users';
+import UsersItem from './UsersItem/UsersItem';
 import { makeStyles } from "tss-react/mui";
 import Paginationn from '../Pagination/Pagination';
 
@@ -27,7 +27,7 @@ const  Users = () => {
   return (
     <>
     <Container maxWidth="lg" className={classes.container}>
-            {users.map((el: UserType) =>(
+            {users.map((el: UsersType) =>(
                 <UsersItem key={el.id} id={el.id} avatar={el.avatar} first_name={el.first_name}/>
             ))}
     </Container>

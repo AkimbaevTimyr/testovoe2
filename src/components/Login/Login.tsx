@@ -3,7 +3,7 @@ import { Grid, Paper, Avatar, TextField, Button, Typography, } from '@mui/materi
 import { makeStyles } from "tss-react/mui";
 import {Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/redux';
-import {login} from '../../store/actions/UserActionCreator'
+import {login,} from '../../store/actions/UserActionCreator'
 
 const useStyles = makeStyles()(() => ({
     paper: {
@@ -42,7 +42,7 @@ const Login: FC = () => {
             </Grid>
             <TextField onChange={e => setEmail(e.target.value)} className={classes.userNameField} label='Username' placeholder='Enter username' variant="outlined" fullWidth required />
             <TextField onChange={e => setPassword(e.target.value)} label='Password' placeholder='Enter password' type='password' variant="outlined" fullWidth required />
-            <Button onClick={handleCLick} type='submit' color='primary' variant="contained" className={classes.btn} fullWidth>Sign in</Button>
+            <Button onClick={()=> handleCLick()} type='submit' color='primary' variant="contained" className={classes.btn} fullWidth>Sign in</Button>
             <Typography > Do you have an account ?
                 <Link to="/register" >
                     Sign Up

@@ -1,65 +1,51 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { LoginType, UserType } from "../../types/user";
-import axios from 'axios'
-import { $host } from "../../http";
-import {useNavigate} from 'react-router-dom'
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {  ObjType,  } from "../../types/user";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword  } from 'firebase/auth';
 import { authentication } from "../../firebase-config";
+import { getUser } from "../../hooks/getUser/getUser";
+import { setUser } from "../../hooks/setUserToLocalStorage/setUser";
 
 
-export const setUsers = createAsyncThunk(
-    "users/setUsers",
-    async(page: number, thunkAPI) =>{
+export const setUserProfile = createAsyncThunk(
+    "user/setUserProfile",
+    async(_, thunkAPI) =>{
+        try{    
+            const {token, email} = JSON.parse(localStorage.getItem('user') || '{}')
+            return {email, token}
+        }catch(e){
+
+        }
+    }
+)
+
+export const check = createAsyncThunk(
+    "user/check",
+    async(_, thunkAPI) =>{
         try{
-            const {data} = await axios.get<any, any>(`https://reqres.in/api/users?page=${page}`)
-            return data.data
+            const {token} = getUser('user')
+           if(token){
+            return true
+           }else{
+            return false
+           }
         }catch(e){
             console.log(e)
         }
     }
 )
 
-export const setError = createAsyncThunk(
-    "users/setError",
-    async(error: string, thunkAPI) =>{
-        try{
-            return error
-        }catch(e){
-            console.log(e)
-        }
-    }
-)
-
-export const setIsAuth = createAsyncThunk(
-    "users/setIsAuth",
-    async(isAuth: boolean, thunkAPI) =>{
-        try{
-            return isAuth
-        }catch(e){
-            console.log(e)
-        }
-    }
-)
-
-type obj = {
-    user: LoginType;
-    navigate : any;
-}
 export const login = createAsyncThunk(
-    "users/login",
-    async(obj: obj, thunkAPI) =>{
+    "user/login",
+    async(obj: ObjType, thunkAPI) =>{
         const {user, navigate} = obj;
-        let userProfile = {}
         try{
             signInWithEmailAndPassword(authentication, user.email, user.password)
             .then((userCredential: any) => {
-              const {user} = userCredential;
-              navigate('/')
-              userProfile = { email: user.email,
-                    token: user.accessToken,
-                    id: user.id}
+                const {user} = userCredential;
+                setUser('user', {email: user.email, token: user.accessToken})
+                thunkAPI.dispatch(check())
+                navigate('/')
             }).catch(() => alert("Не верный логин или пароль"))
-            return userProfile
         }catch(e){
             console.log(e)
         }
@@ -67,11 +53,27 @@ export const login = createAsyncThunk(
 )
 
 export const register = createAsyncThunk(
-    "users/register",
-    async(obj: obj, thunkAPI) =>{
+    "user/register",
+    async(obj: ObjType, thunkAPI) =>{
         const {user, navigate} = obj;
         try{
+            createUserWithEmailAndPassword(authentication, user.email, user.password)
+            .then((userCredential) => {
+                navigate('/login')
+            }).catch((error) => { alert('Invalid user')});
+        }catch(e){
+            console.log(e)
+        }
+    }
+)
 
+export const exit = createAsyncThunk(
+    "user/exit",
+    async(navigate: any, thunkAPI) =>{
+        try{
+            setUser('user', '')
+            thunkAPI.dispatch(check())
+            navigate('/')
         }catch(e){
             console.log(e)
         }

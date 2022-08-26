@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import Main from './components/Main/Main';
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { setUsers } from './store/actions/UserActionCreator';
+import { Routes, Route} from 'react-router-dom'
+import UserPage from './components/Users/UserPage';
+import { AppDispatch } from './store/store';
+import NavBar from './components/NavBar/NavBar';
+import Login from './components/Login/Login'
+import Register from './components/Register/Register';
 
-function App() {
+const App = () => {
+  const dispatch: any = useAppDispatch();
+  useEffect(()=>{
+    dispatch(setUsers(1))
+  }, [])
+  const {error, isAuth} = useAppSelector(state => state.users)
+  console.log(error, isAuth)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar />
+      <Routes>
+          <Route path="" element={<Main/>} />
+          <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/login/" element={<Login />} />
+          <Route path="/register/" element={<Register />} />
+      </Routes>
     </div>
   );
 }

@@ -21,5 +21,5 @@ Stack:\
 4)Redux-Toolkit\
 5)React-router-dom v6\
 6)Material-UI\
-7)Firebase - for registration authorization\
+7)Firebase - for registration authorization - password must contain at least 6 characters\
 8)Axios

@@ -4,9 +4,18 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { FC } from 'react';
 import {Link} from 'react-router-dom'
+import { makeStyles } from "tss-react/mui";
 
+//component styling
+const useStyles = makeStyles()(() => ({
+    link: {
+      textDecoration: "none",
+      color: "white"
+    }
+}));
 
 const NavBar: FC = () => {
+  const {classes} = useStyles()
   return (
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
@@ -15,9 +24,9 @@ const NavBar: FC = () => {
           variant="h6"
           noWrap
           component="div"
-          sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, textDecoration: "none" }}
+          sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' },  }}
         >
-        <Link to="/">
+        <Link to="/" className={classes.link}>
           App
           </Link>
         </Typography>
@@ -27,7 +36,7 @@ const NavBar: FC = () => {
           component="div"
           sx={{display: { xs: 'none', sm: 'block' },cursor: "pointer" }}
         >
-        <Link to="/profile">
+        <Link to="/profile" className={classes.link}>
           Profile
         </Link>
         </Typography>

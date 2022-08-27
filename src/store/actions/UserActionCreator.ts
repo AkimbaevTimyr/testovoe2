@@ -46,7 +46,7 @@ export const login = createAsyncThunk(
                 setUser('user', {email: user.email, token: user.accessToken})  //Adding a user to the local storage
                 thunkAPI.dispatch(check())  // Checking the existence of the token in the local storage
                 navigate('/')
-            }).catch(() => alert("Не верный логин или пароль"))
+            }).catch(() => alert("Wrong login or password"))
         }catch(e){
             console.log(e)
         }

@@ -1,13 +1,15 @@
-import { getUser } from '../../hooks/getUser/getUser'
+import { getUser } from '../../../hooks/getUser/getUser'
 import { Typography, Paper, Button, Container } from '@mui/material';
 import { makeStyles } from "tss-react/mui";
-import { useAppDispatch } from '../../hooks/redux';
-import { exit,  } from '../../store/actions/UserActionCreator';
+import { useAppDispatch } from '../../../hooks/redux';
+import { exit,  } from '../../../store/actions/UserActionCreator';
 import { useNavigate } from 'react-router-dom'
 
 //component styling
 const useStyles = makeStyles()(() => ({
     container: {
+        display: "block",
+        alignItems: "center",
         marginTop: 20,
         width: 300,
         marginLeft: 800,
@@ -19,10 +21,14 @@ const useStyles = makeStyles()(() => ({
         display: "block",
         margin: "0 auto",
         marginTop: 30,
+        textAlign: "center"
     },
     typography: {
-        maxWidth: 200,
         fontSize: 11,
+    },
+    btn:{
+        marginTop: 20,
+        marginBottom: 20
     }
 }));
 
@@ -47,8 +53,8 @@ const Profile = () => {
                 <Typography className={classes.typography} gutterBottom variant="h6" component="div">
                     {token}
                 </Typography>
+                <Button className={classes.btn} onClick={handleClick} variant="outlined">Выйти</Button>
             </Container>
-            <Button onClick={handleClick} variant="outlined">Выйти</Button>
         </Paper>
 
     )

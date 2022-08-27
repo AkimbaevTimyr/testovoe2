@@ -1,9 +1,9 @@
-import React, {FC, useState} from 'react'
-import { Grid, Paper, Avatar, TextField, Button, Typography, } from '@mui/material/'
+import React, {useState, FC} from 'react'
 import { makeStyles } from "tss-react/mui";
+import { Grid, Paper, Avatar, TextField, Button, Typography, } from '@mui/material/'
 import {Link, useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '../../hooks/redux';
-import {login,} from '../../store/actions/UserActionCreator'
+import { useAppDispatch } from '../../../hooks/redux';
+import { register } from '../../../store/actions/UserActionCreator';
 
 //component styling
 const useStyles = makeStyles()(() => ({
@@ -11,51 +11,51 @@ const useStyles = makeStyles()(() => ({
         padding: 20, width: 280, height: 350, margin: "20px auto"
     },
     grid: {
-        display: "block",
-        margin: "0 auto"
+        textAlign: "center"
     },
-    avatar:{
+    avatar: {
         backgroundColor: '#1bbd7e',
+        display: "block",
+        marginLeft: "auto",
+        marginRight: "auto"
     },
     btn: {
-        margin: '8px 0' 
+        margin: '8px 0'
     },
     userNameField: {
         marginBottom: 10
     }
-    
 }));
 
-const Login: FC = () => {
+const Register: FC = () => {
+    const {classes} = useStyles()
     const dispatch: any = useAppDispatch()
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const navigate = useNavigate()
-    const { classes } = useStyles()
-    //authorization happens when you click
-    const handleCLick = () => {
-       dispatch(login({user: {email, password}, navigate}))
+    //registration happens when you click on
+    const handleClick = (e: React.FormEvent<HTMLFormElement> ) => {
+        e.preventDefault()
+       dispatch(register({user: {email, password}, navigate}))
     }
     return (
         <Paper elevation={10} className={classes.paper} >
+            <form onSubmit={handleClick}>
             <Grid className={classes.grid}>
                 <Avatar className={classes.avatar}></Avatar>
-                <h2>Sign In</h2>
+                <h2>Sign Up</h2>
             </Grid>
             <TextField onChange={e => setEmail(e.target.value)} className={classes.userNameField} label='Username' placeholder='Enter username' variant="outlined" fullWidth required />
             <TextField onChange={e => setPassword(e.target.value)} label='Password' placeholder='Enter password' type='password' variant="outlined" fullWidth required />
-            <Button onClick={()=> handleCLick()} type='submit' color='primary' variant="contained" className={classes.btn} fullWidth>Sign in</Button>
+            <Button  type='submit' color='primary' variant="contained" className={classes.btn} fullWidth>Sign Up</Button>
             <Typography > Do you have an account ?
-                <Link to="/register" >
-                    Sign Up
+                <Link to="/" >
+                    Sign In
                 </Link>
             </Typography>
+            </form>
         </Paper>
     )
 }
 
-export default Login
-
-function signInWithEmailAndPassword(authentication: any, email: string, password: string) {
-    throw new Error('Function not implemented.');
-}
+export default Register

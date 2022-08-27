@@ -6,10 +6,10 @@ import { check  } from './store/actions/UserActionCreator';
 import { Routes, Route} from 'react-router-dom'
 import UserPage from './components/Users/UserPage/UserPage';
 import NavBar from './components/NavBar/NavBar';
-import Login from './components/Login/Login'
-import Register from './components/Register/Register';
+import Login from './components/Pages/Login/Login'
+import Register from './components/Pages/Register/Register';
 import NotFound from './components/NotFound/NotFound';
-import Profile from './components/Profile/Profile';
+import Profile from './components/Pages/Profile/Profile';
 
 const App = () => {
   const dispatch: any = useAppDispatch();

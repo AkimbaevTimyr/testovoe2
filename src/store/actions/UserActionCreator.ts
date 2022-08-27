@@ -5,7 +5,7 @@ import { authentication } from "../../firebase-config";
 import { getUser } from "../../hooks/getUser/getUser";
 import { setUser } from "../../hooks/setUserToLocalStorage/setUser";
 
-
+// Adding a user profile to the state
 export const setUserProfile = createAsyncThunk(
     "user/setUserProfile",
     async(_, thunkAPI) =>{
@@ -18,11 +18,12 @@ export const setUserProfile = createAsyncThunk(
     }
 )
 
+// Checking the existence of the token in the local storage
 export const check = createAsyncThunk(
     "user/check",
     async(_, thunkAPI) =>{
         try{
-            const {token} = getUser('user')
+            const {token} = getUser('user') // Retrieving a user token from the repository
            if(token){
             return true
            }else{
@@ -33,7 +34,7 @@ export const check = createAsyncThunk(
         }
     }
 )
-
+// authorization function
 export const login = createAsyncThunk(
     "user/login",
     async(obj: ObjType, thunkAPI) =>{
@@ -42,8 +43,8 @@ export const login = createAsyncThunk(
             signInWithEmailAndPassword(authentication, user.email, user.password)
             .then((userCredential: any) => {
                 const {user} = userCredential;
-                setUser('user', {email: user.email, token: user.accessToken})
-                thunkAPI.dispatch(check())
+                setUser('user', {email: user.email, token: user.accessToken})  //Adding a user to the local storage
+                thunkAPI.dispatch(check())  // Checking the existence of the token in the local storage
                 navigate('/')
             }).catch(() => alert("Не верный логин или пароль"))
         }catch(e){
@@ -52,6 +53,7 @@ export const login = createAsyncThunk(
     }
 )
 
+//registration function
 export const register = createAsyncThunk(
     "user/register",
     async(obj: ObjType, thunkAPI) =>{
@@ -59,7 +61,7 @@ export const register = createAsyncThunk(
         try{
             createUserWithEmailAndPassword(authentication, user.email, user.password)
             .then((userCredential) => {
-                navigate('/login')
+                navigate('/')
             }).catch((error) => { alert('Invalid user')});
         }catch(e){
             console.log(e)
@@ -67,6 +69,7 @@ export const register = createAsyncThunk(
     }
 )
 
+//exit profile function
 export const exit = createAsyncThunk(
     "user/exit",
     async(navigate: any, thunkAPI) =>{

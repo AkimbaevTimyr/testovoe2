@@ -3,27 +3,27 @@ import { userApi } from "../services/UserService";
 import usersReducer from "./reducers/UsersSlice";
 import userReducer from './reducers/UserSlice'
 
+
+//reducer storage
 export const rootReducer = combineReducers<any>({
-    users: usersReducer,
-    user:  userReducer,
-    [userApi.reducerPath]: userApi.reducer,
+  users: usersReducer,
+  user: userReducer,
+  [userApi.reducerPath]: userApi.reducer,
 })
 
+// function to set the store
 export const setupStore = () => {
-    return configureStore({
-        reducer: rootReducer,
-        middleware: (getDefaultMiddleware: any) =>  getDefaultMiddleware({
-            thunk: {
-              extraArgument: userApi,
-            },
-            serializableCheck: false,
-          }),
-})}
-
-
-
-
+  return configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware: any) => getDefaultMiddleware({
+      thunk: {
+        extraArgument: userApi,
+      },
+      serializableCheck: false,
+    }),
+  })
+}
 
 export type RootState = ReturnType<typeof rootReducer>;
-export type AppStore = ReturnType<typeof setupStore>; 
+export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore['dispatch']

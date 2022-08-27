@@ -10,10 +10,12 @@ const store = setupStore()
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+//Add a provider so that the components have access to the store
 root.render(
   <React.StrictMode>
     <BrowserRouter >
-      <Provider store={store}>
+      <Provider store={store}> 
         <App />
       </Provider>
     </BrowserRouter>

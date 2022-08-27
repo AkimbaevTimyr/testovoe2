@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 
+
+// Adding users to the state
 export const setUsers = createAsyncThunk(
     "users/setUsers",
     async(page: number, thunkAPI) =>{

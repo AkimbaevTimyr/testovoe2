@@ -15,8 +15,8 @@ const App = () => {
   const dispatch: any = useAppDispatch();
   const {isAuth} = useAppSelector(state => state.user)
   useEffect(()=>{
-    dispatch(setUsers(1))
-    dispatch(check())
+    dispatch(setUsers(1))  //adding users to the state
+    dispatch(check())  //token verification
   }, [])
   return (
     <div>

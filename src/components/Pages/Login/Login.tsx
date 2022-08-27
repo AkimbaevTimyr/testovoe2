@@ -45,7 +45,7 @@ const Login: FC = () => {
                     <Avatar className={classes.avatar}></Avatar>
                     <h2>Sign In</h2>
                 </Grid>
-                <TextField onChange={e => setEmail(e.target.value)} className={classes.userNameField} label='Username' placeholder='Enter username' variant="outlined" fullWidth required />
+                <TextField onChange={e => setEmail(e.target.value)} className={classes.userNameField} label='Email' placeholder='Enter Email' variant="outlined" fullWidth required />
                 <TextField onChange={e => setPassword(e.target.value)} label='Password' placeholder='Enter password' type='password' variant="outlined" fullWidth required />
                 <Button type='submit' color='primary' variant="contained" className={classes.btn} fullWidth>Sign in</Button>
                 <Typography > Do you have an account ?

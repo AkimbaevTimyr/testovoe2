@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import { exit,  } from '../../store/actions/UserActionCreator';
 import { useNavigate } from 'react-router-dom'
 
+//component styling
 const useStyles = makeStyles()(() => ({
     container: {
         marginTop: 20,
@@ -27,12 +28,12 @@ const useStyles = makeStyles()(() => ({
 
 const Profile = () => {
     const navigate = useNavigate();
-    const { email, token } = getUser('user')
+    const { email, token } = getUser('user')  //getting user data from local storage
     const { classes } = useStyles();
     const dispatch: any = useAppDispatch()
+    // Click to exit the profile
     const handleClick = () => {
         dispatch(exit(navigate))
-      
     }
     return (
         <Paper elevation={3} className={classes.container}>

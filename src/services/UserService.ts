@@ -1,11 +1,14 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import { UsersType } from '../types/users';
+import { getUsersByIdType } from '../types/users';
+
+
 
 export const userApi = createApi({
     reducerPath: 'userApi',
     baseQuery: fetchBaseQuery({baseUrl: 'https://reqres.in' }),
     endpoints: (builder) =>({
-        getUsersById: builder.query<any, any>({
+        //enndpoint to get a user profile
+        getUsersById: builder.query<getUsersByIdType, {}>({
             query: (id: number) => `/api/users/${id}`
         }),
     }),

@@ -30,7 +30,6 @@ const NavBar: FC = () => {
         <Link to="/profile">
           Profile
         </Link>
-
         </Typography>
       </Toolbar>
     </AppBar>

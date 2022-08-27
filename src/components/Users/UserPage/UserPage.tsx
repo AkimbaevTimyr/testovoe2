@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { useParams } from 'react-router-dom'
-import { useGetUsersByIdQuery } from '../../services/UserService'
+import { useGetUsersByIdQuery } from '../../../services/UserService'
 import { Container, CardMedia,Typography } from '@mui/material/';
 import { makeStyles } from "tss-react/mui";
-import Loader from '../Loader/Loader';
-import NotFound from '../NotFound/NotFound';
+import Loader from '../../Loader/Loader';
+import NotFound from '../../NotFound/NotFound';
 
+////component styling
 const useStyles = makeStyles()(() => ({
     container: {
         display: "flex",
@@ -24,12 +25,11 @@ const useStyles = makeStyles()(() => ({
 
 }));
 
-const UserPage = () => {
+const UserPage: FC = () => {
     let { id } = useParams()
     const { data, isLoading, isError } = useGetUsersByIdQuery(Number(id))
     const { avatar = "", email = "", first_name = "", last_name = "" } = { ...data?.data }
     const { classes } = useStyles()
-    console.log(isError)
     return (
         <>
         {isLoading == true ? <Loader /> :<Container maxWidth="sm" className={classes.container}>

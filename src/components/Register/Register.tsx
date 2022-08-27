@@ -5,6 +5,7 @@ import {Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/redux';
 import { register } from '../../store/actions/UserActionCreator';
 
+//component styling
 const useStyles = makeStyles()(() => ({
     paper: {
         padding: 20, width: 280, height: 350, margin: "20px auto"
@@ -31,6 +32,7 @@ const Register: FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const navigate = useNavigate()
+    //registration happens when you click on
     const handleClick = () => {
        dispatch(register({user: {email, password}, navigate}))
     }

@@ -8,7 +8,7 @@ interface UsersItemProps {
     avatar: string;
     first_name: string;
 }
-
+//component styling
 const useStyles = makeStyles()(()=> ({
     card: {
         display: "flex"

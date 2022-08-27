@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector,  } from './hooks/redux';
 import { setUsers,  } from './store/actions/UsersActionCreator';
 import { check  } from './store/actions/UserActionCreator';
 import { Routes, Route} from 'react-router-dom'
-import UserPage from './components/Users/UserPage';
+import UserPage from './components/Users/UserPage/UserPage';
 import NavBar from './components/NavBar/NavBar';
 import Login from './components/Login/Login'
 import Register from './components/Register/Register';

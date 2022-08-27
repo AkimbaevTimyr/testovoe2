@@ -5,6 +5,7 @@ import {Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/redux';
 import {login,} from '../../store/actions/UserActionCreator'
 
+//component styling
 const useStyles = makeStyles()(() => ({
     paper: {
         padding: 20, width: 280, height: 350, margin: "20px auto"
@@ -31,6 +32,7 @@ const Login: FC = () => {
     const [password, setPassword] = useState<string>('')
     const navigate = useNavigate()
     const { classes } = useStyles()
+    //authorization happens when you click
     const handleCLick = () => {
        dispatch(login({user: {email, password}, navigate}))
     }

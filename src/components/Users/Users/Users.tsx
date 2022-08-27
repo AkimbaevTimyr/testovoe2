@@ -1,12 +1,12 @@
-import React from 'react'
-import { useAppSelector } from '../../hooks/redux'
+import React, {FC} from 'react'
+import { useAppSelector } from '../../../hooks/redux'
 import Container from '@mui/material/Container';
-import { UsersType } from '../../types/users';
-import UsersItem from './UsersItem/UsersItem';
+import { UsersType } from '../../../types/users';
+import UsersItem from '../UsersItem/UsersItem';
 import { makeStyles } from "tss-react/mui";
-import Paginationn from '../Pagination/Pagination';
+import Paginationn from '../../Pagination/Pagination';
 
-
+//component styling
 const useStyles = makeStyles()(() => ({
     container: {
         display: "flex",
@@ -21,7 +21,8 @@ const useStyles = makeStyles()(() => ({
     }
 }));
 
-const  Users = () => {
+const Users: FC = () => {
+  // retrieving users from the state
     const {users} = useAppSelector(state => state.users)
     const {classes} = useStyles()
   return (

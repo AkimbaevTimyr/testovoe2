@@ -9,3 +9,8 @@ export type UsersType =  {
     last_name: string;
     avatar: string;
 }
+
+export type getUsersByIdType = {
+    data: UsersType;
+    support: {};
+}

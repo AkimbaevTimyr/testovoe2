@@ -34,7 +34,7 @@ const UserPage: FC = () => {
         <>
         {isLoading == true ? <Loader /> :<Container maxWidth="sm" className={classes.container}>
         {
-            isError === true ? <NotFound /> : <><CardMedia
+            isError === true ? <NotFound text='User not found'/> : <><CardMedia
             component="img"
             className={classes.img}
             image={avatar}

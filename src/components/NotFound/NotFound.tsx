@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {FC} from 'react'
 
-const NotFound = () => {
+
+interface NotFoundProps {
+  text: string;
+}
+
+const NotFound: FC<NotFoundProps> = ({text}) => {
   return (
-    <div>NotFound</div>
+    <div>{text}</div>
   )
 }
 

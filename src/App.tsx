@@ -23,14 +23,14 @@ const App = () => {
       {isAuth == true ? (<>
           <NavBar />
           <Routes>
-            <Route path='*' element={<NotFound />}/>
+            <Route path='*' element={<NotFound text="Page not found"/>}/>
             <Route path="/" element={<Main/>} />
             <Route path="/user/:id*" element={<UserPage />} />
             <Route path="/profile*" element={<Profile />} />
           </Routes>
           </>) : 
           <Routes>
-            <Route path='*' element={<NotFound />}/>
+            <Route path='*' element={<NotFound text="Page not found"/>}/>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes> 
